@@ -1,0 +1,34 @@
+name: Daily Coding Practice
+
+on:
+  schedule:
+    # Run daily at random-ish time (8 AM UTC ~ afternoon in most timezones)
+    - cron: '30 8 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  daily-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate daily practice
+        run: python scripts/generate.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "omni-front"
+          git config user.email "omni-front@users.noreply.github.com"
+          git add -A
+          DATE=$(date -u +%Y-%m-%d)
+          git commit -m "practice: daily coding exercise — $DATE" || echo "No changes"
+          git push
