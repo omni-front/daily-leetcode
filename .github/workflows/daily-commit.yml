@@ -21,10 +21,24 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Maybe skip today (look natural)
+        id: skip
+        run: |
+          # Skip ~30% of days to avoid perfectly uniform green
+          RAND=$(( RANDOM % 10 ))
+          if [ "$RAND" -lt 3 ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Skipping today to keep contribution graph natural"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Generate daily practice
+        if: steps.skip.outputs.skip == 'false'
         run: python scripts/generate.py
 
       - name: Commit and push
+        if: steps.skip.outputs.skip == 'false'
         run: |
           git config user.name "omni-front"
           git config user.email "omni-front@users.noreply.github.com"
