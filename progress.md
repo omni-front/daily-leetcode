@@ -7,3 +7,4 @@
 | 70 | 2026-03-11 | Trees | Validate BST |
 | 72 | 2026-03-13 | Greedy | Task Scheduler |
 | 73 | 2026-03-14 | Sliding Window | Min Window Substring |
+| 74 | 2026-03-15 | Backtracking | Subsets |
