@@ -121,16 +121,20 @@ def main():
             return
 
     # --- COMMIT COUNT ---
-    # Most days: 1 commit. Some days: 2-3 (productive day)
+    # Most days: 1-2 commits. Rare marathon days: 10+
     roll = random.random()
-    if roll < 0.60:
-        commit_count = 1    # 60% — normal day
-    elif roll < 0.85:
-        commit_count = 2    # 25% — productive day
-    elif roll < 0.95:
+    if roll < 0.55:
+        commit_count = 1    # 55% — normal day
+    elif roll < 0.78:
+        commit_count = 2    # 23% — productive day
+    elif roll < 0.88:
         commit_count = 3    # 10% — very productive
+    elif roll < 0.95:
+        commit_count = random.randint(4, 6)   # 7% — deep focus day
+    elif roll < 0.99:
+        commit_count = random.randint(7, 9)   # 4% — long session
     else:
-        commit_count = 4    # 5% — marathon session
+        commit_count = random.randint(10, 15)  # 1% — marathon hackathon
 
     # --- COMMIT MESSAGE ---
     topic = random.choice(TOPICS)
