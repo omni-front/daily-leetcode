@@ -12,3 +12,5 @@
 | 75 | 2026-03-16 | Dynamic Programming | House Robber |
 | 76 | 2026-03-17 | Sliding Window | Fruit Into Baskets |
 | 77 | 2026-03-18 | Graphs | Clone Graph |
+| 78 | 2026-03-19 | Stack Queue | Sliding Window Maximum |
+| 78 | 2026-03-19 | Stack Queue | Sliding Window Maximum |
